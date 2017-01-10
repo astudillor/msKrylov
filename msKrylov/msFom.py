@@ -7,10 +7,10 @@ from scipy._lib.six import xrange
 from scipy.linalg import get_blas_funcs
 from scipy.sparse.linalg.isolve.utils import make_system
 
-__all__ = ['msGmres']
+__all__ = ['msFom']
 
 
-def msGmres(A, b, shifts, m=200, x0=None, tol=1e-5, maxiter=None, M=None,
+def msFom(A, b, shifts, m=200, x0=None, tol=1e-5, maxiter=None, M=None,
             callback=None):
     """
     Multi-Shift Gmres(m)
@@ -71,7 +71,7 @@ def msGmres(A, b, shifts, m=200, x0=None, tol=1e-5, maxiter=None, M=None,
         # s = |r_j| e_1
         s = np.zeros(m+1, dtype=xtype)
         s[0] = errors[j]
-        # Apply Givens rotation to H_j[:m+1, :m] and s
+        # Apply Givens rotation to H_j[:m, :m] and s
         # Solve Triangular system with scipy.linalg.solve_triangular
         # Update X
         # Residuals? ¯\_(ツ)_/¯
